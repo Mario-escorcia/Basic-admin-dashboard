@@ -5,9 +5,9 @@ export const LayoutComponent = () => {
   return (
     <div className="h-screen w-screen flex flex-col">
         <NavbarComponent></NavbarComponent>
-        <div className="w-full h-full p-2">
-            <Outlet></Outlet>
-        </div>
+    <div className="w-full flex-1 px-2 min-h-0">
+      <Outlet></Outlet>
+    </div>
     </div>
   )
 }

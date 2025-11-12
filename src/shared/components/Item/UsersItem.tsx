@@ -4,17 +4,34 @@ import {
   ItemDescription,
   ItemTitle,
 } from "@/components/ui/item";
+import type { itemsProps } from "@/types/types";
 
-export const ItemComponent = () => {
+export const ItemComponent = ({ data }: itemsProps) => {
   return (
-    <Item className="bg-white border border-[1px solid #fafafa] w-full p-2  hover:bg-gray-10  0 cursor-pointer" tabIndex={1}>
+    <Item
+      className="bg-white border border-[1px solid #fafafa] w-full p-2  hover:bg-gray-10  0 cursor-pointer"
+      tabIndex={1}
+    >
       {/* <ItemHeader>Item Header</ItemHeader> */}
-      <ItemContent className="flex flex-row gap-2 justify-between">
-        <ItemTitle>Mario Escorcia</ItemTitle>
-        <ItemDescription>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis, harum!</ItemDescription>
-        <ItemDescription>Lorem ipsum, dolor sit amet!</ItemDescription>
-        <ItemDescription>Lorem ipsum, dolor sit amet elit. Reiciendis, harum!</ItemDescription>
-
+      <ItemContent className="flex flex-row gap-2 justify-between min-w-0">
+        <ItemTitle className="truncate whitespace-nowrap overflow-hidden w-[20%] shrink-0 flex items-center">
+          {data.name}
+        </ItemTitle>
+        <ItemDescription className="truncate whitespace-nowrap overflow-hidden w-[15%] shrink-0 flex items-center">
+          {data.email}
+        </ItemDescription>
+        <ItemDescription
+          className="shrink-0 flex items-center"
+          style={{
+            width: "60%",
+            maxWidth : "60%",
+            overflow : "hidden",
+            textOverflow : "ellipsis",
+            whiteSpace : "nowrap", 
+          }}
+        >
+          {data.body}
+        </ItemDescription>
       </ItemContent>
     </Item>
   );

@@ -6,11 +6,14 @@ import {
 } from "@/components/ui/item";
 import type { itemsProps } from "@/types/types";
 
-export const ItemComponent = ({ data }: itemsProps) => {
+export const ItemComponent = ({ data , getComment}: itemsProps) => {
+
+
   return (
     <Item
-      className="bg-white border border-[1px solid #fafafa] w-full p-2  hover:bg-gray-10  0 cursor-pointer"
+      className="bg-white border border-[1px solid #fafafa] w-full p-2  hover:bg-gray-100 cursor-pointer"
       tabIndex={1}
+      onClick={()=> getComment(data.postId)}
     >
       {/* <ItemHeader>Item Header</ItemHeader> */}
       <ItemContent className="flex flex-row gap-2 justify-between min-w-0">

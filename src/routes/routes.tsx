@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import { LayoutComponent } from "@/components/Layout/LayoutComponent";
-import { Home } from "@/components/home/Home";
+import { getDataList, Home, selectComment } from "@/components/home/Home";
 import { Login } from "@/components/login/Login";
+import { SpecificCommentsComponent } from "@/components/SpecificComments/SpecificCommentsComponent";
 
 export const routes = createBrowserRouter([
   {
@@ -19,7 +20,15 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
+        loader: getDataList,
+        errorElement: <div className="h-full w-full flex items-center justify-center text-lg text-indigo-600">Error loading data</div>,
       },
+      {
+        path: "messages",
+        element : <SpecificCommentsComponent></SpecificCommentsComponent>,
+        // loader : selectComment,
+
+      }
     ],
   },
 ]);

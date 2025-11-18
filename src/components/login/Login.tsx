@@ -10,6 +10,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usersRegistered } from "@/data/users";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import type { userRegisteredType } from "@/types/types";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 export const Login = () => {
@@ -18,6 +20,12 @@ export const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
+  // const [userLogged , setUserLogged] = useState<userRegisteredType>({
+  //   id: 0,
+  //   name : "",
+  //   email : ""
+  // });
+  const [data , setData] = useLocalStorage({key:"user", initialValue : {}})
 
   const handleLogin = ()=>{
     const {email, password} = formData;
@@ -26,6 +34,13 @@ export const Login = () => {
     })
 
     if(userAvailable){
+      const dataProcessed : userRegisteredType = {
+        id: userAvailable.id,
+        name : userAvailable.name,
+        email : userAvailable.email
+      }
+
+      setData(dataProcessed)
         navigate("/app");
     }else{
         alert("Invalid credentials");

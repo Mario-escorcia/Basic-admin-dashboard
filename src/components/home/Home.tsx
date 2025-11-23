@@ -1,4 +1,4 @@
-import { getComentSvc, getSpecificComment } from "@/services/adminServices";
+import { getComentSvc } from "@/services/adminServices";
 import { ItemComponent } from "@/shared/components/Item/UsersItem";
 import type { commentType } from "@/types/types";
 import { useLoaderData } from "react-router";
@@ -12,13 +12,7 @@ export const getDataList = async () => {
   }
 };
   
-  export const selectComment = async (postId : number) => {
-    let request = await getSpecificComment(postId);
-    if (request.status === 200) {
-      console.log(request.data , "hello")
-      return request.data;
-    }
-  }
+
 
 export const Home = () => {
   const comments = useLoaderData() as commentType[];
@@ -35,7 +29,7 @@ export const Home = () => {
       </div>
       <div className="flex flex-col gap-1 flex-1 overflow-y-auto ">
         {comments.map((comment, idx) => (
-          <ItemComponent key={idx} data={comment} getComment={selectComment} />
+          <ItemComponent key={idx} data={comment} />
         ))}
       </div>
     </div>

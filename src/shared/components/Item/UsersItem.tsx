@@ -5,15 +5,20 @@ import {
   ItemTitle,
 } from "@/components/ui/item";
 import type { itemsProps } from "@/types/types";
+import { useNavigate } from "react-router";
 
-export const ItemComponent = ({ data , getComment}: itemsProps) => {
+export const ItemComponent = ({ data }: itemsProps) => {
+  const navigate = useNavigate();
 
+  const redirectComment = () => {
+    navigate("/app/messages/" + data.id);
+  };
 
   return (
     <Item
       className="bg-white border border-[1px solid #fafafa] w-full p-2  hover:bg-gray-100 cursor-pointer"
       tabIndex={1}
-      onClick={()=> getComment(data.postId)}
+      onClick={() => redirectComment()}
     >
       {/* <ItemHeader>Item Header</ItemHeader> */}
       <ItemContent className="flex flex-row gap-2 justify-between min-w-0">
@@ -27,10 +32,10 @@ export const ItemComponent = ({ data , getComment}: itemsProps) => {
           className="shrink-0 flex items-center"
           style={{
             width: "60%",
-            maxWidth : "60%",
-            overflow : "hidden",
-            textOverflow : "ellipsis",
-            whiteSpace : "nowrap", 
+            maxWidth: "60%",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
           }}
         >
           {data.body}

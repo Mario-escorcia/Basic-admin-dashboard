@@ -8,7 +8,6 @@ export type commentType = {
 
 export type itemsProps = {
     data : commentType;
-    getComment : (postId : number) => void;
 }
 
 
